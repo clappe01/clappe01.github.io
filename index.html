@@ -48,23 +48,36 @@
         document.body.insertAdjacentElement('afterbegin', divElement);
 
 
-        function adjustDivHeight() {
-            var windowHeight = window.innerHeight;
-
-            // Находим элемент <div> по его ID
-            var divElement = document.getElementById('yohoho');
-
-            // Устанавливаем высоту <div> равной высоте окна браузера
-            divElement.style.height = windowHeight + 'px';
+        // функция для установки размера элемента по размеру окна браузера
+        function resize(elem) {
+            elem.style.width = window.innerWidth + 'px';
+            elem.style.height = window.innerHeight + 'px';
         }
 
-        // Вызываем функцию для установки изначального размера
-        adjustDivHeight();
+        // применение функции resize при изменении размера окна
+        window.onresize = function() {
+            var elem = document.getElementById('yohoho');
+            if (elem) {
+                resize(elem);
+            }
+        };
 
-        // Добавляем обработчик события orientationchange
-        window.addEventListener('orientationchange', function() {
-            setTimeout(adjustDivHeight, 500); // Задержка для обновления размера после изменения ориентации
+        // настройка observer для отслеживания добавления элемента 'yohoho'
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === "childList") {
+                    var elem = document.getElementById('yohoho');
+                    if (elem) {
+                        resize(elem);
+                        observer.disconnect(); // прекращение наблюдения после найденного элемента
+                    }
+                }
+            });
         });
+
+        // начало наблюдения
+        observer.observe(document.body, { childList: true, subtree: true });
+
 
 
     </script>
