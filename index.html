@@ -26,12 +26,16 @@
     <script>
         // Получаем ID из адреса страницы
         var hash = window.location.hash.substring(1);
-        console.log(hash);
-        // Находим элемент <div> по его ID
-        var divElement = document.getElementById('yohoho');
 
-        // Подставляем ID в атрибут data-kinopoisk
+        // Создаем новый элемент <div>
+        var divElement = document.createElement('div');
+
+        // Устанавливаем ID и атрибут data-kinopoisk для нового элемента
+        divElement.id = 'yohoho';
         divElement.setAttribute('data-kinopoisk', hash);
+
+        // Вставляем новый элемент после тега <body>
+        document.body.insertAdjacentElement('afterbegin', divElement);
 
 
         function adjustDivHeight() {
