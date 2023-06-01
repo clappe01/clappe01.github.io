@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XE9FEW3VXW"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7S4JXF87H6"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-XE9FEW3VXW');
+        gtag('config', 'G-7S4JXF87H6');
     </script>
 
     <!-- favicon -->
@@ -46,15 +46,32 @@
 <body>
 
     <script>
-        // Получаем ID из адреса страницы
-        var hash = window.location.hash.substring(1);
+
+        let filmId = window.location.hash.substring(1); // удалить '#' из строки
+
+        if (filmId) {
+            fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}`, {
+                method: 'GET',
+                headers: {
+                    'X-API-KEY': 'your-api-key',
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.title = data.data.nameRu; // предполагается, что имя фильма на русском возвращается в поле nameRu
+                })
+                .catch(err => console.log(err));
+        } else {
+            document.title = "Ошибка: Не указан фильм";
+        }
 
         // Создаем новый элемент <div>
         var divElement = document.createElement('div');
 
         // Устанавливаем ID и атрибут data-kinopoisk для нового элемента
         divElement.id = 'yohoho';
-        divElement.setAttribute('data-kinopoisk', hash);
+        divElement.setAttribute('data-kinopoisk', filmId);
 
         // Вставляем новый элемент после тега <body>
         document.body.insertAdjacentElement('afterbegin', divElement);
