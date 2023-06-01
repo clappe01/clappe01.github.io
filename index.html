@@ -26,26 +26,32 @@
     <script>
         // Получаем ID из адреса страницы
         var hash = window.location.hash.substring(1);
-
+        console.log(hash);
         // Находим элемент <div> по его ID
         var divElement = document.getElementById('yohoho');
 
         // Подставляем ID в атрибут data-kinopoisk
         divElement.setAttribute('data-kinopoisk', hash);
 
-        
-        window.addEventListener('resize', function() {
-        var windowHeight = window.innerHeight;
 
-        // Находим элемент <div> по его ID
-        var divElement = document.getElementById('yohoho');
+        function adjustDivHeight() {
+            var windowHeight = window.innerHeight;
 
-        // Устанавливаем высоту <div> равной высоте окна браузера
-        divElement.style.height = windowHeight + 'px';
+            // Находим элемент <div> по его ID
+            var divElement = document.getElementById('yohoho');
+
+            // Устанавливаем высоту <div> равной высоте окна браузера
+            divElement.style.height = windowHeight + 'px';
+        }
+
+        // Вызываем функцию для установки изначального размера
+        adjustDivHeight();
+
+        // Добавляем обработчик события orientationchange
+        window.addEventListener('orientationchange', function() {
+            setTimeout(adjustDivHeight, 500); // Задержка для обновления размера после изменения ориентации
         });
 
-        // Вызываем событие resize один раз при загрузке страницы для установки изначального размера
-        window.dispatchEvent(new Event('resize'));
 
     </script>
 </body>
