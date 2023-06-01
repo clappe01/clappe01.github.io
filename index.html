@@ -59,8 +59,13 @@
 
         // функция для установки размера элемента по размеру окна браузера
         function resize() {
-            var elem = document.getElementById('yohoho');
-            if (elem) {
+            var elem1 = document.getElementById('yohoho');
+            var elem2 = document.getElementById('yohoho-iframe');
+            if (elem1) {
+                elem.style.width = window.innerWidth + 'px';
+                elem.style.height = window.innerHeight + 'px';
+            }
+            if (elem2) {
                 elem.style.width = window.innerWidth + 'px';
                 elem.style.height = window.innerHeight + 'px';
             }
@@ -68,22 +73,6 @@
 
         // применение функции resize при изменении размера окна
         window.addEventListener('resize', resize);
-
-        // настройка observer для отслеживания добавления элемента 'yohoho'
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === "childList") {
-                    var elem = document.getElementById('yohoho');
-                    if (elem) {
-                        resize();
-                        observer.disconnect(); // прекращение наблюдения после найденного элемента
-                    }
-                }
-            });
-        });
-
-        // начало наблюдения
-        observer.observe(document.body, { childList: true, subtree: true });
 
     </script>
     <script src="//yohoho.cc/yo.js"></script>
