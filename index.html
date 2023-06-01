@@ -5,17 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        // Получаем ID из адреса страницы
-        var hash = window.location.hash.substring(1);
-
-        // Находим элемент <div> по его ID
-        var divElement = document.getElementById('yohoho');
-
-        // Подставляем ID в атрибут data-kinopoisk
-        divElement.setAttribute('data-kinopoisk', hash);
-
-    </script>
     <style>
         html, body {
             background-color: black;
@@ -34,5 +23,30 @@
 <body>
     <div id="yohoho" data-kinopoisk="0"></div>
     <script src="//yohoho.cc/yo.js"></script>
+    <script>
+        // Получаем ID из адреса страницы
+        var hash = window.location.hash.substring(1);
+
+        // Находим элемент <div> по его ID
+        var divElement = document.getElementById('yohoho');
+
+        // Подставляем ID в атрибут data-kinopoisk
+        divElement.setAttribute('data-kinopoisk', hash);
+
+        
+        window.addEventListener('resize', function() {
+        var windowHeight = window.innerHeight;
+
+        // Находим элемент <div> по его ID
+        var divElement = document.getElementById('yohoho');
+
+        // Устанавливаем высоту <div> равной высоте окна браузера
+        divElement.style.height = windowHeight + 'px';
+        });
+
+        // Вызываем событие resize один раз при загрузке страницы для установки изначального размера
+        window.dispatchEvent(new Event('resize'));
+
+    </script>
 </body>
 </html>
