@@ -58,18 +58,16 @@
 
 
         // функция для установки размера элемента по размеру окна браузера
-        function resize(elem) {
-            elem.style.width = window.innerWidth + 'px';
-            elem.style.height = window.innerHeight + 'px';
+        function resize() {
+            var elem = document.getElementById('yohoho');
+            if (elem) {
+                elem.style.width = window.innerWidth + 'px';
+                elem.style.height = window.innerHeight + 'px';
+            }
         }
 
         // применение функции resize при изменении размера окна
-        window.onresize = function() {
-            var elem = document.getElementById('yohoho');
-            if (elem) {
-                resize(elem);
-            }
-        };
+        window.addEventListener('resize', resize);
 
         // настройка observer для отслеживания добавления элемента 'yohoho'
         var observer = new MutationObserver(function(mutations) {
@@ -77,7 +75,7 @@
                 if (mutation.type === "childList") {
                     var elem = document.getElementById('yohoho');
                     if (elem) {
-                        resize(elem);
+                        resize();
                         observer.disconnect(); // прекращение наблюдения после найденного элемента
                     }
                 }
@@ -86,8 +84,6 @@
 
         // начало наблюдения
         observer.observe(document.body, { childList: true, subtree: true });
-
-
 
     </script>
     <script src="//yohoho.cc/yo.js"></script>
