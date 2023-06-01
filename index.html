@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XE9FEW3VXW"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-XE9FEW3VXW');
@@ -24,9 +25,10 @@
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="theme-color" content="#ffffff">
     <title>Clappe</title>
-    
+
     <style>
-        html, body {
+        html,
+        body {
             background-color: black;
             margin: 0;
             padding: 0;
@@ -40,8 +42,9 @@
     </style>
 
 </head>
+
 <body>
-    
+
     <script>
         // Получаем ID из адреса страницы
         var hash = window.location.hash.substring(1);
@@ -57,24 +60,42 @@
         document.body.insertAdjacentElement('afterbegin', divElement);
 
 
-        // функция для установки размера элемента по размеру окна браузера
+        // функция для установки размера элемента и iframe по размеру окна браузера
         function resize() {
-            var elem1 = document.getElementById('yohoho');
-            var elem2 = document.getElementById('yohoho-iframe');
-            if (elem1) {
+            var elem = document.getElementById('yohoho');
+            var iframe = document.getElementById('yohoho-iframe');
+            if (elem) {
                 elem.style.width = window.innerWidth + 'px';
                 elem.style.height = window.innerHeight + 'px';
             }
-            if (elem2) {
-                elem.style.width = window.innerWidth + 'px';
-                elem.style.height = window.innerHeight + 'px';
+            if (iframe) {
+                iframe.style.width = window.innerWidth + 'px';
+                iframe.style.height = window.innerHeight + 'px';
             }
         }
 
         // применение функции resize при изменении размера окна
         window.addEventListener('resize', resize);
 
+        // настройка observer для отслеживания добавления элемента 'yohoho'
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.type === "childList") {
+                    var elem = document.getElementById('yohoho');
+                    if (elem) {
+                        resize();
+                        observer.disconnect(); // прекращение наблюдения после найденного элемента
+                    }
+                }
+            });
+        });
+
+        // начало наблюдения
+        observer.observe(document.body, { childList: true, subtree: true });
+
+
     </script>
     <script src="//yohoho.cc/yo.js"></script>
 </body>
+
 </html>
