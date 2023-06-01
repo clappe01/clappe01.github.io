@@ -16,14 +16,20 @@
     </script>
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="c/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#4776e6">
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#4776e6">
     <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#000000">
+
+    <!-- opengraph -->
+    <meta property="og:url" content="https://clappe01.github.io" />
+    <meta property="og:title" content="@clappe_bot - Telegram-бот для просмотра фильмов и сериалов" />
+    <meta property="og:description" content="Бесплатный онлайн-кинотеатр, где вы можете наслаждаться широким выбором фильмов и сериалов в высоком качестве. Ссылка на бота: https://t.me/clappe_bot" />
+    <meta property="og:image" content="/static/opengraph.jpg" />
+
     <title>Clappe</title>
 
     <style>
@@ -48,23 +54,6 @@
     <script>
 
         let filmId = window.location.hash.substring(1); // удалить '#' из строки
-
-        if (filmId) {
-            fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}`, {
-                method: 'GET',
-                headers: {
-                    'X-API-KEY': 'your-api-key',
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then(response => response.json())
-                .then(data => {
-                    document.title = data.data.nameRu; // предполагается, что имя фильма на русском возвращается в поле nameRu
-                })
-                .catch(err => console.log(err));
-        } else {
-            document.title = "Ошибка: Не указан фильм";
-        }
 
         // Создаем новый элемент <div>
         var divElement = document.createElement('div');
