@@ -7,14 +7,14 @@
     <title>Document</title>
     <script>
         // Получаем ID из адреса страницы
-        var url = window.location.href;
-        var id = url.substring(url.lastIndexOf('/') + 1);
+        var hash = window.location.hash.substring(1);
 
         // Находим элемент <div> по его ID
         var divElement = document.getElementById('yohoho');
 
         // Подставляем ID в атрибут data-kinopoisk
-        divElement.setAttribute('data-kinopoisk', id);
+        divElement.setAttribute('data-kinopoisk', hash);
+
     </script>
 </head>
 <body>
