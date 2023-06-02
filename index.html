@@ -26,7 +26,8 @@
 
     <!-- opengraph -->
     <meta property="og:url" content="https://clappe01.github.io" />
-    <meta property="og:title" content="🎬 Бесплатный онлайн-кинотеатр, где вы можете наслаждаться широким выбором фильмов и сериалов в высоком качестве." />
+    <meta property="og:title"
+        content="🎬 Бесплатный онлайн-кинотеатр, где вы можете наслаждаться широким выбором фильмов и сериалов в высоком качестве." />
     <meta property="og:description" content="Ссылка на Telegram-бота: https://t.me/clappe_bot" />
     <meta property="og:image" content="/static/opengraph.jpg" />
 
@@ -102,6 +103,56 @@
 
     </script>
     <script src="//yohoho.cc/yo.js"></script>
+    <script>
+        // Создаем кнопку с иконкой "назад"
+        var backButton = document.createElement('button');
+        backButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.17l-4.59-4.59L7 10l5 5L7 20l-2.59-2.59L9 16.17zM17 5v14h2V5h-2z"/></svg>';
+
+        // Создаем тултип
+        var tooltip = document.createElement('div');
+        tooltip.innerHTML = 'Вернуться к боту';
+        tooltip.style.display = 'none';
+
+        // Добавляем кнопку и тултип на страницу
+        document.body.appendChild(backButton);
+        document.body.appendChild(tooltip);
+
+        // Показываем кнопку и тултип
+        backButton.style.position = 'fixed';
+        backButton.style.top = '50%';
+        backButton.style.left = '16px';
+        backButton.style.transform = 'translateY(-50%)';
+        backButton.style.border = 'none';
+        backButton.style.background = 'none';
+        backButton.style.cursor = 'pointer';
+        backButton.style.zIndex = '9999';
+
+        tooltip.style.position = 'fixed';
+        tooltip.style.top = '50%';
+        tooltip.style.left = 'calc(16px + 40px + 8px)'; // 40px - ширина кнопки
+        tooltip.style.transform = 'translateY(-50%)';
+        tooltip.style.padding = '5px 10px';
+        tooltip.style.background = 'rgba(0, 0, 0, 0.7)';
+        tooltip.style.color = '#fff';
+        tooltip.style.borderRadius = '4px';
+        tooltip.style.zIndex = '9999';
+
+        // Устанавливаем таймеры для скрытия кнопки и тултипа
+        setTimeout(function () {
+            backButton.style.display = 'none';
+        }, 30000);
+
+        setTimeout(function () {
+            tooltip.style.display = 'none';
+        }, 33000);
+
+        // Добавляем обработчик события клика на кнопку
+        backButton.addEventListener('click', function () {
+            // Переадресация на адрес https://t.me/clappe_bot
+            window.location.href = 'https://t.me/clappe_bot';
+        });
+
+    </script>
 </body>
 
 </html>
