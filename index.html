@@ -105,28 +105,29 @@
     <script src="//yohoho.cc/yo.js"></script>
     <script>
         window.onload = function () {
+            var container = document.createElement("div");
+            container.style.position = "fixed";
+            container.style.top = "15%";
+            container.style.left = "10px";
+            container.style.zIndex = "9999";
+            container.style.display = "flex";
+            container.style.flexDirection = "row";
+            container.style.alignItems = "center";
+
             var button = document.createElement("button");
-            button.style.position = "fixed";
-            button.style.top = "15%";
-            button.style.left = "10px";
-            button.style.zIndex = "9999";
             button.style.backgroundColor = "#f2f3f4";
             button.style.border = "none";
             button.style.borderRadius = "50%";
-            button.style.padding = "5px";
-            button.style.cursor = "pointer";
             button.style.height = "48px";
             button.style.width = "48px";
-            button.style.display = "flex";
-            button.style.alignItems = "center";
-            button.style.justifyContent = "center";
+            button.style.cursor = "pointer";
             button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>`;
+            button.addEventListener('click', function () {
+                window.location.href = 'https://t.me/clappe_bot';
+            });
 
             var tooltip = document.createElement("div");
-            tooltip.style.position = "fixed";
-            tooltip.style.top = "17%";
-            tooltip.style.left = "70px";
-            tooltip.style.zIndex = "9999";
+            tooltip.style.marginLeft = "10px";
             tooltip.style.fontFamily = "sans-serif";
             tooltip.style.color = "white";
             tooltip.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
@@ -136,8 +137,9 @@
             tooltip.style.opacity = "0";
             tooltip.textContent = "Вернуться к боту";
 
-            document.body.appendChild(button);
-            document.body.appendChild(tooltip);
+            container.appendChild(button);
+            container.appendChild(tooltip);
+            document.body.appendChild(container);
 
             setTimeout(function () {
                 tooltip.style.opacity = '1';
@@ -145,11 +147,10 @@
 
             setTimeout(function () {
                 tooltip.style.opacity = '0';
-            }, 5000);
+            }, 3000);
 
             setTimeout(function () {
-                document.body.removeChild(button);
-                document.body.removeChild(tooltip);
+                document.body.removeChild(container);
             }, 20000);
         }
     </script>
