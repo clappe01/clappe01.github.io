@@ -104,88 +104,54 @@
     </script>
     <script src="//yohoho.cc/yo.js"></script>
     <script>
-        // Создаем кнопку с иконкой "назад"
-        var backButton = document.createElement('button');
-        backButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 11H7.83005L12.71 6.12001C13.1 5.73001 13.1 5.09001 12.71 4.70001C12.6175 4.6073 12.5076 4.53375 12.3867 4.48357C12.2657 4.43339 12.136 4.40756 12.005 4.40756C11.8741 4.40756 11.7444 4.43339 11.6234 4.48357C11.5024 4.53375 11.3926 4.6073 11.3 4.70001L4.71005 11.29C4.61734 11.3825 4.5438 11.4924 4.49361 11.6134C4.44343 11.7344 4.4176 11.864 4.4176 11.995C4.4176 12.126 4.44343 12.2557 4.49361 12.3766C4.5438 12.4976 4.61734 12.6075 4.71005 12.7L11.3 19.29C11.3926 19.3826 11.5025 19.456 11.6235 19.5061C11.7445 19.5562 11.8741 19.582 12.005 19.582C12.136 19.582 12.2656 19.5562 12.3866 19.5061C12.5076 19.456 12.6175 19.3826 12.71 19.29C12.8026 19.1974 12.8761 19.0875 12.9262 18.9665C12.9763 18.8456 13.0021 18.7159 13.0021 18.585C13.0021 18.4541 12.9763 18.3244 12.9262 18.2035C12.8761 18.0825 12.8026 17.9726 12.71 17.88L7.83005 13H19C19.55 13 20 12.55 20 12C20 11.45 19.55 11 19 11Z" fill="black"/></svg>';
+        window.onload = function () {
+            var button = document.createElement("button");
+            button.style.position = "fixed";
+            button.style.top = "15%";
+            button.style.left = "10px";
+            button.style.zIndex = "9999";
+            button.style.backgroundColor = "#f2f3f4";
+            button.style.border = "none";
+            button.style.borderRadius = "50%";
+            button.style.padding = "5px";
+            button.style.cursor = "pointer";
+            button.style.height = "48px";
+            button.style.width = "48px";
+            button.style.display = "flex";
+            button.style.alignItems = "center";
+            button.style.justifyContent = "center";
+            button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>`;
 
-        // Создаем тултип
-        var tooltip = document.createElement('div');
-        tooltip.innerHTML = 'Вернуться к боту';
-        tooltip.style.display = 'none';
+            var tooltip = document.createElement("div");
+            tooltip.style.position = "fixed";
+            tooltip.style.top = "17%";
+            tooltip.style.left = "70px";
+            tooltip.style.zIndex = "9999";
+            tooltip.style.fontFamily = "sans-serif";
+            tooltip.style.color = "white";
+            tooltip.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+            tooltip.style.padding = "10px";
+            tooltip.style.borderRadius = "5px";
+            tooltip.style.transition = "opacity 1s ease-in-out";
+            tooltip.style.opacity = "0";
+            tooltip.textContent = "Вернуться к боту";
 
-        // Добавляем кнопку и тултип на страницу
-        document.body.appendChild(backButton);
-        document.body.appendChild(tooltip);
+            document.body.appendChild(button);
+            document.body.appendChild(tooltip);
 
-        // Показываем кнопку с плавной анимацией
-        backButton.style.opacity = '0';
-        backButton.style.transition = 'opacity 0.3s ease-in-out';
-        setTimeout(function () {
-            backButton.style.opacity = '1';
-        }, 100);
-
-        backButton.style.position = 'fixed';
-        backButton.style.top = '15%';
-        backButton.style.left = '16px';
-        backButton.style.transform = 'translateY(-50%)';
-        backButton.style.border = 'none';
-        backButton.style.background = '#f2f3f4';
-        backButton.style.cursor = 'pointer';
-        backButton.style.zIndex = '9999';
-        backButton.style.width = '40px';
-        backButton.style.height = '40px';
-        backButton.style.borderRadius = '50%';
-        backButton.style.display = 'flex';
-        backButton.style.justifyContent = 'center';
-        backButton.style.alignItems = 'center';
-        backButton.style.transition = 'background-color 0.3s ease-in-out';
-
-        // Показываем тултип с плавной анимацией
-        tooltip.style.opacity = '0';
-        tooltip.style.transition = 'opacity 0.3s ease-in-out';
-        setTimeout(function () {
-            tooltip.style.opacity = '1';
-        }, 100);
-
-        tooltip.style.position = 'fixed';
-        tooltip.style.top = '15%';
-        tooltip.style.left = 'calc(16px + 40px + 8px)'; // 40px - ширина кнопки
-        tooltip.style.transform = 'translateY(-50%)';
-        tooltip.style.padding = '5px 10px';
-        tooltip.style.background = 'rgba(0, 0, 0, 0.7)';
-        tooltip.style.color = '#fff';
-        tooltip.style.borderRadius = '4px';
-        tooltip.style.zIndex = '9999';
-        tooltip.style.fontFamily = 'sans-serif';
-
-        // Устанавливаем таймеры для скрытия кнопки и тултипа
-        setTimeout(function () {
-            backButton.style.opacity = '0';
-            tooltip.style.opacity = '0';
             setTimeout(function () {
-                backButton.style.display = 'none';
-                tooltip.style.display = 'none';
-            }, 300);
-        }, 30000);
+                tooltip.style.opacity = '1';
+            }, 100);
 
-        // Добавляем обработчик события клика на кнопку
-        backButton.addEventListener('click', function () {
-            // Переадресация на адрес https://t.me/clappe_bot
-            window.location.href = 'https://t.me/clappe_bot';
-        });
-
-        // Отображаем тултип
-        setTimeout(function () {
-            tooltip.style.opacity = '1';
-        }, 500);
-
-        // Скрываем тултип
-        setTimeout(function () {
-            tooltip.style.opacity = '0';
             setTimeout(function () {
-                tooltip.style.display = 'none';
-            }, 300);
-        }, 6000);
+                tooltip.style.opacity = '0';
+            }, 5000);
+
+            setTimeout(function () {
+                document.body.removeChild(button);
+                document.body.removeChild(tooltip);
+            }, 20000);
+        }
     </script>
 </body>
 
