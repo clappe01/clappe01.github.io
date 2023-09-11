@@ -33,127 +33,31 @@
 
     <title>Clappe</title>
 
-    <style>
-        html,
+   <style>
         body {
             background-color: black;
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-
-        #yohoho {
-            height: 100%;
+        
+        #content {
+            background-color: transparent;
+            color: white;
+            text-align: center;
+            padding: 20% 20%;
         }
     </style>
 
 </head>
 
 <body>
-
-    <script>
-
-        let filmId = window.location.hash.substring(1); // удалить '#' из строки
-
-        // Создаем новый элемент <div>
-        var divElement = document.createElement('div');
-
-        // Устанавливаем ID и атрибут data-kinopoisk для нового элемента
-        divElement.id = 'yohoho';
-        divElement.setAttribute('data-kinopoisk', filmId);
-
-        // Вставляем новый элемент после тега <body>
-        document.body.insertAdjacentElement('afterbegin', divElement);
-
-
-        // функция для установки размера элемента и iframe по размеру окна браузера
-        function resize() {
-            var elem = document.getElementById('yohoho');
-            var iframe = document.getElementById('yohoho-iframe');
-            if (elem) {
-                elem.style.width = window.innerWidth + 'px';
-                elem.style.height = window.innerHeight + 'px';
-            }
-            if (iframe) {
-                iframe.style.width = window.innerWidth + 'px';
-                iframe.style.height = window.innerHeight + 'px';
-            }
-        }
-
-        // применение функции resize при изменении размера окна
-        window.addEventListener('resize', resize);
-
-        // настройка observer для отслеживания добавления элемента 'yohoho'
-        var observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-                if (mutation.type === "childList") {
-                    var elem = document.getElementById('yohoho');
-                    if (elem) {
-                        resize();
-                        observer.disconnect(); // прекращение наблюдения после найденного элемента
-                    }
-                }
-            });
-        });
-
-        // начало наблюдения
-        observer.observe(document.body, { childList: true, subtree: true });
-
-
-    </script>
-    <script src="//yohoho.cc/yo.js"></script>
-    <script>
-        window.onload = function () {
-            var container = document.createElement("div");
-            container.style.position = "fixed";
-            container.style.top = "15%";
-            container.style.left = "10px";
-            container.style.zIndex = "9999";
-            container.style.display = "flex";
-            container.style.flexDirection = "row";
-            container.style.alignItems = "center";
-
-            var button = document.createElement("button");
-            button.style.backgroundColor = "#f2f3f4";
-            button.style.border = "none";
-            button.style.borderRadius = "50%";
-            button.style.height = "48px";
-            button.style.width = "48px";
-            button.style.cursor = "pointer";
-            button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>`;
-            button.addEventListener('click', function () {
-                window.location.href = 'https://t.me/clappe_bot';
-            });
-
-            var tooltip = document.createElement("div");
-            tooltip.style.marginLeft = "10px";
-            tooltip.style.fontFamily = "sans-serif";
-            tooltip.style.color = "white";
-            tooltip.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-            tooltip.style.padding = "10px";
-            tooltip.style.borderRadius = "5px";
-            tooltip.style.transition = "opacity 1s ease-in-out";
-            tooltip.style.opacity = "0";
-            tooltip.textContent = "Вернуться к боту";
-
-            container.appendChild(button);
-            container.appendChild(tooltip);
-            document.body.appendChild(container);
-
-            setTimeout(function () {
-                tooltip.style.opacity = '1';
-            }, 100);
-
-            setTimeout(function () {
-                tooltip.style.opacity = '0';
-            }, 3000);
-
-            setTimeout(function () {
-                document.body.removeChild(container);
-            }, 20000);
-        }
-    </script>
+    <div id="content">
+        <h1>Сервис Clappe закрылся</h1>
+    </div>
 </body>
 
 </html>
